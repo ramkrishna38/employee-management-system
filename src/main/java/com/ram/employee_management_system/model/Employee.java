@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
@@ -16,11 +18,14 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message="Employee name is required")
     private String name;
 
+    @Email(message="Enter valid email")
     @Column(unique = true)
     private String email;
 
+    @NotBlank(message="Department is required")
     private String department;
 
     private Double salary;

@@ -1,10 +1,12 @@
 package com.ram.employee_management_system.controller;
 
+import com.ram.employee_management_system.dto.EmployeeDTO;
 import com.ram.employee_management_system.model.Employee;
 import com.ram.employee_management_system.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,7 +18,13 @@ public class EmployeeController {
 
     // Save Employee
     @PostMapping
-    public Employee saveEmployee(@RequestBody Employee employee) {
+    public Employee saveEmployee(@Valid @RequestBody EmployeeDTO dto) {
+
+        Employee employee =new Employee();
+
+        employee.setName(dto.getName());
+        employee.setDepartment(dto.getDepartment());
+        employee.setEmail(dto.getEmail());
         return service.saveEmployee(employee);
     }
 
@@ -34,7 +42,7 @@ public class EmployeeController {
 
     // Update Employee
     @PutMapping
-    public Employee updateEmployee(@RequestBody Employee employee) {
+    public Employee updateEmployee(@Valid @RequestBody Employee employee) {
         return service.updateEmployee(employee);
     }
 

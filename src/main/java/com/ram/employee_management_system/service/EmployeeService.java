@@ -1,5 +1,6 @@
 package com.ram.employee_management_system.service;
 
+import com.ram.employee_management_system.exception.EmployeeNotFoundException;
 import com.ram.employee_management_system.model.Employee;
 import com.ram.employee_management_system.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class EmployeeService {
 
     // Get Employee By Id
     public Employee getEmployeeById(Integer id) {
-        return employeeRepository.findById(id).orElse(null);
+        return employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id :" + id));
     }
 
     // Update Employee
