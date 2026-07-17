@@ -40,6 +40,19 @@ public class EmployeeController {
         return service.getEmployeeById(id);
     }
 
+    @GetMapping("/search/{name}")
+    public Employee getEmployeeByName(@PathVariable  String name){
+
+        return service.getEmployeeByName(name);
+    }
+
+    @GetMapping("/department/{department}")
+    public List<Employee> getEmployeeByDepartment(@PathVariable String department) {
+
+        return service.getEmployeeByDepartment(department);
+
+    }
+
     // Update Employee
     @PutMapping
     public Employee updateEmployee(@Valid @RequestBody Employee employee) {
