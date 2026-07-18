@@ -6,9 +6,13 @@ import com.ram.employee_management_system.model.Employee;
 import com.ram.employee_management_system.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
 
 @Service
 public class EmployeeService {
@@ -53,6 +57,29 @@ public class EmployeeService {
     public List<Employee> getEmployeeByDepartment(String department) {
 
         return employeeRepository.findByDepartment(department);
+
+    }
+
+    public Page<Employee> getEmployeesWithPagination(int page, int size){
+
+        Pageable pageable = PageRequest.of(page,size);
+
+        return employeeRepository.findAll(pageable);
+    }
+
+    public List<Employee> getEmployeesSorted(String field){
+
+        return employeeRepository.findAll(Sort.by(Sort.Direction.ASC, field));
+    }
+
+    public Page<Employee> getEmployeesWithPaginationAndSorting(int page,
+                                                               int size,
+                                                               String field){
+
+        Pageable pageable =
+                PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, field));
+
+        return employeeRepository.findAll(pageable);
 
     }
 }

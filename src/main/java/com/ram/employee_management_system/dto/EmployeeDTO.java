@@ -2,6 +2,7 @@ package com.ram.employee_management_system.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class EmployeeDTO {
 
@@ -13,6 +14,9 @@ public class EmployeeDTO {
 
     @Email(message="Enter valid email")
     private String email;
+
+    @NotNull(message = "Salary is required")
+    private Double salary;
 
     public EmployeeDTO(){
 
@@ -40,5 +44,13 @@ public class EmployeeDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
     }
 }
