@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -39,6 +40,7 @@ public class EmployeeController {
 
     // Get All Employees
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Employee> getAllEmployees() {
 
         logger.info("Fetching All Employees");
@@ -148,4 +150,6 @@ public class EmployeeController {
 
         return "Employee Deleted Successfully";
     }*/
+
+
 }

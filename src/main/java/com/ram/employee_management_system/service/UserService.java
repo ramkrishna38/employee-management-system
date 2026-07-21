@@ -18,6 +18,14 @@ public class UserService {
     @Autowired
     private JwtUtil jwtUtil;
 
+
+
+    public UserService(UserRepository userRepository,
+                       BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     public User register(User user){
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -31,15 +39,16 @@ public class UserService {
         User dbUser = userRepository.findByUsername(user.getUsername())
                 .orElseThrow(() -> new RuntimeException("User Not Found"));
 
-        if(passwordEncoder.matches(user.getPassword(), dbUser.getPassword())){
+        if(passwordEncoder.matches(
+                user.getPassword(),
+                dbUser.getPassword())) {
 
-            return jwtUtil.generateToken(user.getUsername());
-
+            String token = jwtUtil.generateToken(dbUser.getUsername());
+            return token;
         }
-
-        throw new RuntimeException("Invalid Password");
+        else{
+            throw new RuntimeException("Invalid Password");
+        }
     }
-
-
 
 }
