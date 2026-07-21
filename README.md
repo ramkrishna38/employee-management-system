@@ -1,22 +1,26 @@
-# Employee Management System
+# 👨‍💼 Employee Management System with JWT Authentication
 
-A secure REST API built using Spring Boot.
+A secure backend REST API application developed using **Spring Boot**, **JWT Authentication**, **Spring Security**, **Hibernate**, and **MySQL**.
 
-## Features
+---
 
-- Employee CRUD
+# 🚀 Features
+
+- Employee CRUD Operations
 - JWT Authentication
 - Spring Security
 - BCrypt Password Encryption
-- MySQL Database
-- Spring Data JPA
-- Swagger UI
 - Pagination
 - Sorting
-- Search
+- Search Employees
+- DTO Pattern
 - Global Exception Handling
+- Swagger API Documentation
+- MySQL Database Integration
 
-## Tech Stack
+---
+
+# 🛠️ Tech Stack
 
 - Java 11
 - Spring Boot
@@ -28,38 +32,114 @@ A secure REST API built using Spring Boot.
 - Maven
 - Swagger
 
-## APIs
+---
 
-### Authentication
+# 📂 Project Structure
 
+```
+Controller
+Service
+Repository
+Model
+DTO
+Security
+Exception
+Configuration
+```
+
+---
+
+# 🔐 Authentication APIs
+
+## Register User
+
+```
 POST /auth/register
+```
 
+## Login User
+
+```
 POST /auth/login
+```
 
-### Employees
+Returns JWT Token.
 
-GET /employees
+---
 
-GET /employees/{id}
+# 👨‍💼 Employee APIs
 
-POST /employees
+| Method | Endpoint |
+|--------|----------|
+| GET | /employees |
+| GET | /employees/{id} |
+| POST | /employees |
+| PUT | /employees/{id} |
+| DELETE | /employees/{id} |
 
-PUT /employees/{id}
+All Employee APIs require **Bearer Token Authentication**.
 
-DELETE /employees/{id}
+---
 
-## Swagger
+# 📖 Swagger Documentation
 
 ```
 http://localhost:8080/swagger-ui/index.html
 ```
 
-## Run
+---
+
+# ⚙️ Run Project
+
+Clone repository
+
+```bash
+git clone https://github.com/ramkrishna38/employee-management-system.git
+```
+
+Move into project
+
+```bash
+cd employee-management-system
+```
+
+Run
 
 ```bash
 mvn spring-boot:run
 ```
 
-## Author
+---
 
-Ram Krishna
+# 💾 Database
+
+Database : MySQL
+
+Update your database configuration in
+
+```
+application.properties
+```
+
+---
+
+# 📌 Highlights
+
+- Secure REST APIs using JWT Authentication
+- Layered Architecture (Controller-Service-Repository)
+- Password Encryption using BCrypt
+- Production-ready Exception Handling
+- Clean DTO-based response model
+- API Documentation with Swagger
+
+---
+
+# 👨‍💻 Author
+
+**Ram Krishna**
+
+GitHub
+
+```
+https://github.com/ramkrishna38/employee-management-system
+```
